@@ -1,0 +1,11 @@
+def calculate_length(string):
+    length = 0
+    for char in string:
+        length += 1
+    return length
+
+# Example usage:
+string = "Hello, World!"
+print("Length of the string:", calculate_length(string))
+
+
