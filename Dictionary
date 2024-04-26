@@ -9,3 +9,185 @@ print("Ascending order:", ascending_sorted)
 print("Descending order:", descending_sorted)
 
 2.Write a Python script to add a key to a dictionary.
+
+my_dict = {0: 10, 1: 20}
+
+my_dict[2] = 30
+
+print("Updated Dictionary:", my_dict)
+
+3. Write a Python script to concatenate the following dictionaries to create a new one.
+dic1 = {1: 10, 2: 20}
+dic2 = {3: 30, 4: 40}
+dic3 = {5: 50, 6: 60}
+
+new_dict = {**dic1, **dic2, **dic3}
+
+print("Concatenated Dictionary:", new_dict)
+
+4.Write a Python script to check whether a given key already exists in a dictionary.
+
+my_dict = {0: 10, 1: 20, 2: 30}
+
+key_to_check = 1
+
+if key_to_check in my_dict:
+    print(f"The key {key_to_check} exists in the dictionary.")
+else:
+    print(f"The key {key_to_check} does not exist in the dictionary.")
+
+5.Write a Python program to iterate over dictionaries using for loops.
+
+my_dict = {'a': 10, 'b': 20, 'c': 30}
+
+
+for key, value in my_dict.items():
+    print(f"Key: {key}, Value: {value}")
+
+6.Write a Python script to generate and print a dictionary that contains a number (between 1 and n) in the form (x, x*x).
+
+def generate_dict(n):
+    result = {}
+    for i in range(1, n+1):
+        result[i] = i*i
+    return result
+
+n = 5
+result_dict = generate_dict(n)
+print("Generated Dictionary:", result_dict)
+
+7.Write a Python script to print a dictionary where the keys are numbers between 1 and 15 (both included) and the values are the square of the keys.
+
+result_dict = {num: num ** 2 for num in range(1, 16)}
+
+print("Generated Dictionary:", result_dict)
+
+8.Write a Python script to merge two Python dictionaries.
+dict1 = {'a': 100, 'b': 200}
+dict2 = {'x': 300, 'y': 400}
+
+merged_dict = dict1.copy()  
+merged_dict.update(dict2)   
+
+print("Merged Dictionary:", merged_dict)
+
+9. Write a Python program to iterate over dictionaries using for loops.
+
+d = {'Red': 1, 'Green': 2, 'Blue': 3}
+
+for color_key, value in d.items():
+    print(color_key, 'corresponds to ', d[color_key]) 
+
+10. Write a Python program to sum all the items in a dictionary.
+
+my_dict = {'a': 10, 'b': 20, 'c': 30}
+
+total_sum = sum(my_dict.values())
+
+print("Sum of all items in the dictionary:", total_sum)
+
+11. Write a Python program to multiply all the items in a dictionary.
+
+my_dict = {'a': 10, 'b': 20, 'c': 30}
+
+result = 1
+for value in my_dict.values():
+    result *= value
+
+print("Result of multiplying all values:", result)
+
+12.Write a Python program to remove a key from a dictionary.
+
+my_dict = {0: 10, 1: 20, 2: 30}
+
+key_to_remove = 1
+
+if key_to_remove in my_dict:
+    del my_dict[key_to_remove]
+    print(f"Key {key_to_remove} removed successfully.")
+else:
+    print(f"Key {key_to_remove} does not exist in the dictionary.")
+
+print("Updated Dictionary:", my_dict)
+
+13.Write a Python program to map two lists into a dictionary.
+
+keys = ['a', 'b', 'c']
+values = [10, 20, 30]
+
+mapped_dict = dict(zip(keys, values))
+
+print("Mapped Dictionary:", mapped_dict)
+
+14. Write a Python program to sort a given dictionary by key.
+
+my_dict = {'b': 2, 'a': 1, 'c': 3}
+
+sorted_dict = dict(sorted(my_dict.items()))
+
+print("Sorted Dictionary by Key:", sorted_dict)
+
+15. Write a Python program to get the maximum and minimum values of a dictionary.
+
+my_dict = {'a': 10, 'b': 20, 'c': 5}
+
+max_value = max(my_dict.values())
+min_value = min(my_dict.values())
+
+print("Maximum value:", max_value)
+print("Minimum value:", min_value)
+
+16.Write a Python program to get a dictionary from an object's fields.
+
+class MyClass:
+    def __init__(self):
+        self.a = 1
+        self.b = 2
+        self.c = 3
+
+obj = MyClass()
+
+obj_dict = vars(obj)
+
+print("Dictionary from object's fields:", obj_dict)
+
+17. Write a Python program to remove duplicates from the dictionary.
+
+my_dict = {'a': 10, 'b': 20, 'c': 10, 'd': 30, 'e': 20}
+
+unique_dict = {}
+for key, value in my_dict.items():
+    if value not in unique_dict.values():
+        unique_dict[key] = value
+
+print("Dictionary with duplicates removed:", unique_dict)
+
+18.Write a Python program to check if a dictionary is empty or not.
+
+my_dict = {}
+
+if not my_dict:
+    print("Dictionary is empty.")
+else:
+    print("Dictionary is not empty.")
+19. Write a Python program to combine two dictionaries by adding values for common keys.
+
+from collections import Counter
+
+d1 = {'a': 100, 'b': 200, 'c': 300}
+d2 = {'a': 300, 'b': 200, 'd': 400}
+
+combined_dict = Counter(d1) + Counter(d2)
+
+print("Combined Dictionary:", combined_dict)
+
+20. Write a Python program to print all distinct values in a list of dictionaries.
+
+data = [{"V":"S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII":"S005"}, {"V":"S009"},{"VIII":"S007"}]
+
+distinct_values = set(val for dic in data for val in dic.values())
+
+print("Unique Values:", distinct_values)
+
+
+
