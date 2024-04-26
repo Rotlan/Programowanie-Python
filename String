@@ -1,11 +1,288 @@
+1. Write a Python program to calculate the length of a string.
+
 def calculate_length(string):
     length = 0
     for char in string:
         length += 1
     return length
 
-# Example usage:
-string = "Hello, World!"
+string = "QWERTYUIOPASDFGHJKLZXCVBNM"
 print("Length of the string:", calculate_length(string))
 
+2. Write a Python program to count the number of characters (character frequency) in a string.
+def count_characters(string):
+    
+    char_frequency = {}
 
+    
+    for char in string:
+       
+        char_frequency[char] = char_frequency.get(char, 0) + 1
+
+    return char_frequency
+
+string = "Aleksander Kaleta"
+print("Character frequencies:", count_characters(string))
+
+3. Write a Python program to get a string made of the first 2 and last 2 characters of a given string. If the string length is less than 2, return the empty string instead.
+def get_first_and_last_two_chars(string):
+    
+    if len(string) < 2:
+        return ""
+    
+    first_two_chars = string[:2]
+    last_two_chars = string[-2:]
+    
+    
+    result = first_two_chars + last_two_chars
+    
+    return result
+
+input_string = "Aleksander Kaleta"
+output_string = get_first_and_last_two_chars(input_string)
+print("Result:", output_string)
+
+4. Write a Python program to get a string from a given string where all occurrences of its first char have been changed to '$', except the first char itself.
+def replace_first_char(string):
+    if not string:  
+        return ""
+
+    first_char = string[0]  
+    modified_string = string[0]  
+
+    # Iterate through the rest of the characters in the string
+    for char in string[1:]:
+        if char == first_char:  
+            modified_string += '$'  
+        else:
+            modified_string += char  
+
+    return modified_string
+
+input_string = "aleksander kaleta"
+output_string = replace_first_char(input_string)
+print("Modified string:", output_string)
+
+5. Write a Python program to get a single string from two given strings, separated by a space and swap the first two characters of each string.
+def chars_mix_up(a, b):
+    
+    new_a = b[:2] + a[2:]
+
+    
+    new_b = a[:2] + b[2:]
+
+    
+    return new_a + ' ' + new_b
+
+print(chars_mix_up('Aleksander', 'Kaleta'))
+
+6. Write a Python program to add 'ing' at the end of a given string (length should be at least 3). If the given string already ends with 'ing', add 'ly' instead. If the string length of the given string is less than 3, leave it unchanged.
+def add_ing_or_ly(string):
+    if len(string) < 3:  
+        return string
+    elif string.endswith('ing'):  
+        return string + 'ly'
+    else:  
+        return string + 'ing'
+
+
+input_string1 = "watch"
+input_string2 = "watching"
+input_string3 = "go"
+output_string1 = add_ing_or_ly(input_string1)
+output_string2 = add_ing_or_ly(input_string2)
+output_string3 = add_ing_or_ly(input_string3)
+
+print("Result 1:", output_string1)
+print("Result 2:", output_string2)
+print("Result 3:", output_string3)
+
+7. Write a Python program to find the first appearance of the substrings 'not' and 'poor' in a given string. If 'not' follows 'poor', replace the whole 'not'...'poor' substring with 'good'. Return the resulting string.
+def replace_not_poor_with_good(string):
+    index_not = string.find('not')  
+    index_poor = string.find('poor')  
+
+    
+    if index_not != -1 and index_poor != -1 and index_not < index_poor:
+        
+        return string[:index_not] + 'good' + string[index_poor + 4:]
+    else:
+        return string
+
+input_string1 = "We are not that poor today."
+input_string2 = "We are poor today."
+output_string1 = replace_not_poor_with_good(input_string1)
+output_string2 = replace_not_poor_with_good(input_string2)
+
+print("Result 1:", output_string1)
+print("Result 2:", output_string2)
+
+8. Write a Python function that takes a list of words and return the longest word and the length of the longest one.
+
+def find_longest_word(word_list):
+    longest_word = max(word_list, key=len)
+    return longest_word, len(longest_word)
+
+
+words = ["Aleksander", "Mikołaj", "Kaleta", "Informatyka"]
+longest_word, word_length = find_longest_word(words)
+print(f"The longest word is '{longest_word}' with length {word_length}.")
+
+9. Write a Python program to remove the nth index character from a nonempty string.
+def remove_nth_character(string, n):
+    if n < 0 or n >= len(string):
+        return "Index out of range"
+    
+    new_string = string[:n] + string[n+1:]
+    
+    return new_string
+
+input_string = "Aleksander Kaleta"
+index_to_remove = 7
+result_string = remove_nth_character(input_string, index_to_remove)
+print("Result:", result_string)
+
+10. Write a Python program to change a given string to a newly string where the first and last chars have been exchanged.
+
+def exchange_first_and_last(string):
+    if len(string) < 2:
+        return string
+    
+    new_string = string[-1] + string[1:-1] + string[0]
+    
+    return new_string
+
+input_string = "Aleksander Kaleta"
+result_string = exchange_first_and_last(input_string)
+print("Result:", result_string)
+
+11. Write a Python program to remove characters that have odd index values in a given string.
+def exchange_first_and_last(string):
+    if len(string) < 2:
+        return string
+    
+    new_string = string[-1] + string[1:-1] + string[0]
+    
+    return new_string
+
+input_string = "Aleksander Kaleta"
+result_string = exchange_first_and_last(input_string)
+print("Result:", result_string)
+
+12. Write a Python program to count the occurrences of each word in a given sentence.
+def count_word_occurrences(sentence):
+    words = sentence.split()
+    
+    word_count = {}
+    
+    for word in words:
+        word_count[word] = word_count.get(word, 0) + 1
+    
+    return word_count
+
+input_sentence = "Ala ma kota, kot ma Ale"
+word_occurrences = count_word_occurrences(input_sentence)
+print("Word occurrences:", word_occurrences)
+
+13. Write a Python script that takes input from the user and displays that input back in upper and lower cases.
+
+user_input = input("Enter a string: ")
+
+upper_case = user_input.upper()
+
+lower_case = user_input.lower()
+
+print("Input in upper case:", upper_case)
+print("Input in lower case:", lower_case)
+
+14. Write a Python program that accepts a comma-separated sequence of words as input and prints the distinct words in sorted form (alphanumerically).
+
+def print_sorted_distinct_words(sequence):
+    words = sequence.split(',')
+
+    words = [word.strip().lower() for word in words]
+
+    distinct_words = sorted(set(words))
+
+    print("Distinct words in sorted form:")
+    for word in distinct_words:
+        print(word)
+
+input_sequence = input("Enter a comma-separated sequence of words: ")
+print_sorted_distinct_words(input_sequence)
+
+15. Write a Python function to create an HTML string with tags around the word(s).
+def html_tag(word, tag):
+    return f"<{tag}>{word}</{tag}>"
+
+word = "Aleksander"
+tag = "K"
+html_string = html_tag(word, tag)
+print(html_string)
+
+16. Write a Python function to insert a string in the middle of a string.
+
+def insert_string_middle(base_string, insert_string):
+    middle_index = len(base_string) // 2
+    return base_string[:middle_index] + insert_string + base_string[middle_index:]
+
+base_string = "Aleksander Kaleta"
+insert_string = "Mikołaj, "
+new_string = insert_string_middle(base_string, insert_string)
+print(new_string)
+
+17. Write a Python function to get a string made of 4 copies of the last two characters of a specified string (length must be at least 2).
+def repeat_last_two_chars(string):
+    if len(string) < 2:  
+        return "String length must be at least 2"
+    
+    last_two_chars = string[-2:]  
+    repeated_last_two_chars = last_two_chars * 4  
+    
+    return repeated_last_two_chars
+
+input_string = "Aleksander"
+output_string = repeat_last_two_chars(input_string)
+print("Result:", output_string)
+
+18. Write a Python function to get a string made of the first three characters of a specified string. If the length of the string is less than 3, return the original string.
+
+def first_three_chars(string):
+    if len(string) < 3:
+        return string
+    
+    first_three = string[:3]
+    
+    return first_three
+
+input_string = "Aleksander"
+output_string = first_three_chars(input_string)
+print("Result:", output_string)
+
+19. Write a Python program to get the last part of a string before a specified character.
+
+def get_last_part_before_character(string, char):
+    index = string.rfind(char)
+    
+    if index == -1:
+        return string
+    
+    last_part = string[:index]
+    
+    return last_part
+
+input_string = "Aleksander Mikołaj Kalera"
+specified_char = "ł"
+result = get_last_part_before_character(input_string, specified_char)
+print("Result:", result)
+
+20. Write a Python function to reverse a string if its length is a multiple of 4.
+def reverse_string_if_multiple_of_four(string):
+    if len(string) % 4 == 0:
+        return string[::-1]
+    else:
+        return string
+
+input_string = "12345678"
+output_string = reverse_string_if_multiple_of_four(input_string)
+print("Result:", output_string)
