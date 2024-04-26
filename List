@@ -1,0 +1,223 @@
+1. Write a Python program to sum all the items in a list.
+def sum_list_items(lst):
+    
+    total = 0
+    
+    
+    for item in lst:
+        total += item
+    
+    return total
+
+
+my_list = [1, 2, 3, 4, 5]
+total_sum = sum_list_items(my_list)
+print("Sum of all items in the list:", total_sum)
+
+2. Multiply all items in a list:
+
+def multiply_list_items(lst):
+    result = 1
+    for item in lst:
+        result *= item
+    return result
+
+my_list = [1, 2, 3, 4, 5]
+total_product = multiply_list_items(my_list)
+print("Product of all items in the list:", total_product)
+
+3. Write a Python program to get the largest number from a list.
+
+def get_largest_number(lst):
+    return max(lst)
+
+my_list = [1, 2, 3, 4, 5]
+largest_number = get_largest_number(my_list)
+print("Largest number in the list:", largest_number)
+
+4. Write a Python program to get the smallest number from a list.
+
+def get_smallest_number(lst):
+    return min(lst)
+
+my_list = [1, 2, 3, 4, 5]
+smallest_number = get_smallest_number(my_list)
+print("Smallest number in the list:", smallest_number)
+
+5. Write a Python program to count the number of strings from a given list of strings. The string length is 2 or more and the first and last characters are the same.
+
+def count_strings_with_same_first_and_last_char(lst):
+    count = 0
+    for word in lst:
+        if len(word) >= 2 and word[0] == word[-1]:
+            count += 1
+    return count
+
+my_list = ['abc', 'aba', '121', '1234']
+count = count_strings_with_same_first_and_last_char(my_list)
+print("Number of strings:", count)
+
+6. Write a Python program to get a list, sorted in increasing order by the last element in each tuple from a given list of non-empty tuples.
+def sort_tuples_by_last_element(tuples_list):
+    return sorted(tuples_list, key=lambda x: x[-1])
+
+my_list = [(2, 5), (1, 2), (4, 4), (2, 3), (2, 1)]
+sorted_list = sort_tuples_by_last_element(my_list)
+print("Sorted list:", sorted_list)
+
+7. Write a Python program to remove duplicates from a list.
+a = [10, 20, 30, 20, 10, 50, 60, 40, 80, 50, 40]
+
+dup_items = set()
+uniq_items = []
+
+for x in a:
+    if x not in dup_items:
+        uniq_items.append(x)
+        dup_items.add(x)
+
+print(dup_items) 
+
+8. Write a Python program to check if a list is empty or not.
+
+def is_list_empty(lst):
+    return len(lst) == 0
+
+my_list = []
+print("Is the list empty?", is_list_empty(my_list))
+
+9. Write a Python program to clone or copy a list.
+
+def clone_list(lst):
+    return lst[:]
+
+original_list = [1, 2, 3, 4, 5]
+cloned_list = clone_list(original_list)
+print("Original list:", original_list)
+print("Cloned list:", cloned_list)
+
+10. Write a Python program to find the list of words that are longer than n from a given list of words.
+
+def find_words_longer_than_n(lst, n):
+    return [word for word in lst if len(word) > n]
+
+word_list = ['apple', 'banana', 'kiwi', 'orange', 'strawberry']
+n = 5
+result = find_words_longer_than_n(word_list, n)
+print("Words longer than", n, "characters:", result)
+
+11. Write a Python function that takes two lists and returns True if they have at least one common member.
+
+def has_common_member(list1, list2):
+    return bool(set(list1) & set(list2))
+
+list1 = [1, 2, 3, 4, 5]
+list2 = [5, 6, 7, 8, 9]
+print("Do the lists have at least one common member?", has_common_member(list1, list2))
+
+12. Write a Python program to print a specified list after removing the 0th, 4th, and 5th elements.
+
+def remove_elements_at_indices(lst, indices):
+    return [elem for index, elem in enumerate(lst) if index not in indices]
+
+my_list = ['Red', 'Green', 'White', 'Black', 'Pink', 'Yellow']
+indices_to_remove = [0, 4, 5]
+result_list = remove_elements_at_indices(my_list, indices_to_remove)
+print("List after removing elements:", result_list)
+
+13.Write a Python program to generate a 346 3D array whose each element is "*".
+
+def generate_3d_array(rows, cols, depth):
+    return [[['*' for _ in range(cols)] for _ in range(rows)] for _ in range(depth)]
+
+
+array_3d = generate_3d_array(3, 4, 6)
+print("Generated 3D array:")
+for layer in array_3d:
+    for row in layer:
+        print("".join(row))
+    print()
+
+14. Write a Python program to print the numbers of a specified list after removing even numbers from it.
+
+def remove_even_numbers(lst):
+    return [num for num in lst if num % 2 != 0]
+
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+result_list = remove_even_numbers(my_list)
+print("List after removing even numbers:", result_list)
+
+15. Write a Python program to shuffle and print a specified list.
+
+import random
+
+def shuffle_list(lst):
+    shuffled_list = lst[:]  
+    random.shuffle(shuffled_list)
+    return shuffled_list
+
+
+my_list = [1, 2, 3, 4, 5]
+shuffled = shuffle_list(my_list)
+print("Shuffled list:", shuffled)
+
+16. Write a Python program to generate and print a list of the first and last 5 elements where the values are square numbers between 1 and 30 (both included).
+
+def generate_square_numbers(start, end):
+    return [x ** 2 for x in range(start, end + 1) if 1 <= x ** 2 <= 30]
+
+squares = generate_square_numbers(1, 5) + generate_square_numbers(25, 30)
+print("List of the first and last 5 square numbers between 1 and 30:", squares)
+
+17. Write a Python program to check if each number is prime in a given list of numbers. Return True if all numbers are prime; otherwise, False.
+
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def are_all_prime(lst):
+    return all(is_prime(num) for num in lst)
+
+list1 = [0, 3, 4, 7, 9]
+list2 = [3, 5, 7, 13]
+list3 = [1, 5, 3]
+print("Are all numbers prime in list1?", are_all_prime(list1))
+print("Are all numbers prime in list2?", are_all_prime(list2))
+print("Are all numbers prime in list3?", are_all_prime(list3))
+
+18. Write a Python program to generate all permutations of a list in Python.
+
+from itertools import permutations
+
+def generate_permutations(lst):
+    return list(permutations(lst))
+
+my_list = [1, 2, 3]
+permutations_list = generate_permutations(my_list)
+print("Permutations of the list:", permutations_list)
+
+19. Write a Python program to calculate the difference between two lists.
+
+def calculate_list_difference(list1, list2):
+    return list(set(list1) - set(list2))
+
+list1 = [1, 2, 3, 4, 5]
+list2 = [3, 4, 5, 6, 7]
+difference = calculate_list_difference(list1, list2)
+print("Difference between list1 and list2:", difference)
+
+20. Write a Python program to access the index of a list.
+
+def access_list_index(lst, item):
+    return [index for index, value in enumerate(lst) if value == item]
+
+my_list = ['apple', 'banana', 'kiwi', 'orange', 'banana']
+item = 'banana'
+indices = access_list_index(my_list, item)
+print("Indices of '{}' in the list:".format(item), indices)
+
+
