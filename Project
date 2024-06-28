@@ -1,24 +1,148 @@
-powers = [3, 8, 9, 7] 
-   
-mini, maxi = 0, 0
-   
-for power in powers: 
-    if mini == 0 and maxi == 0: 
-        mini, maxi = powers[0], powers[0] 
-        print(mini, maxi) 
-    else: 
-        mini = min(mini, power) 
-        maxi = max(maxi, power) 
-        print(mini, maxi) 
+import tkinter as tk
+import tkinter.messagebox as msgbox
+import random
 
-#Modifided code:
+root = tk.Tk()
+root.title("Kółko i Krzyżyk")
 
-powers = [3, 8, 9, 7]
+current_player = True
 
-mini, maxi = powers[0], powers[0]
+board = [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""]
+]
 
-for power in powers[1:]:
+buttons = [[None, None, None],
+           [None, None, None],
+           [None, None, None]]
 
-    mini = min(mini, power)
-    maxi = max(maxi, power)
-    print(f"Current Power: {power} -> Min: {mini}, Max: {maxi}")
+def check_win(player):
+    for row in board:
+        if all([cell == player for cell in row]):
+            return True
+
+    for col in range(3):
+        if all([board[row][col] == player for row in range(3)]):
+            return True
+
+    if all([board[i][i] == player for i in range(3)]) or \
+       all([board[i][2-i] == player for i in range(3)]):
+        return True
+
+    return False
+
+def is_board_full():
+    for row in board:
+        for cell in row:
+            if cell == "":
+                return False
+    return True
+
+def ai_move():
+    for r in range(3):
+        for c in range(3):
+            if board[r][c] == "":
+                board[r][c] = "O"
+                if check_win("O"):
+                    buttons[r][c].config(text="O", state="disabled")
+                    msgbox.showinfo("Game Over", "Przegrana")
+                    reset_game()
+                    return
+                else:
+                    board[r][c] = ""
+
+    for r in range(3):
+        for c in range(3):
+            if board[r][c] == "":
+                board[r][c] = "X"
+                if check_win("X"):
+                    board[r][c] = "O"  
+                    buttons[r][c].config(text="O", state="disabled")
+                    current_player = True  
+                    return
+                else:
+                    board[r][c] = ""
+
+    empty_spots = [(r, c) for r in range(3) for c in range(3) if board[r][c] == ""]
+    if empty_spots:
+        r, c = random.choice(empty_spots)
+        board[r][c] = "O"
+        buttons[r][c].config(text="O", state="disabled")
+
+        if check_win("O"):
+            msgbox.showinfo("Game Over", "Przegrana")
+            reset_game()
+        elif is_board_full():
+            msgbox.showinfo("Game Over", "Remis")
+            reset_game()
+
+def button_click(row, col):
+    global current_player
+
+    if board[row][col] == "" and current_player:
+        board[row][col] = "X"
+        buttons[row][col].config(text="X", state="disabled")
+
+        if check_win("X"):
+            msgbox.showinfo("Game Over", "Wygrana")
+            reset_game()
+        elif not is_board_full():
+            current_player = False  
+            ai_move()
+        else:
+            msgbox.showinfo("Game Over", "Remis")
+            reset_game()
+
+    current_player = True
+
+def reset_game():
+    global current_player, board
+
+    current_player = True
+    board = [
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""]
+    ]
+
+    for r in range(3):
+        for c in range(3):
+            buttons[r][c].config(text="", state="active")
+
+    choose_first_player()
+
+def choose_first_player():
+    global current_player
+    dialog = tk.Toplevel(root)
+    dialog.title("Pierszy ruch")
+
+    label = tk.Label(dialog, text="Kto wykonuje pierwszy ruch?", font=("Helvetica", 14))
+    label.pack(pady=20)
+
+    def set_player(choice):
+        global current_player
+        current_player = choice
+        dialog.destroy()
+        if not current_player:
+            ai_move()
+
+    button_ja = tk.Button(dialog, text="ja", font=("Helvetica", 14), command=lambda: set_player(True))
+    button_ja.pack(side="left", padx=20, pady=20)
+
+    button_komputer = tk.Button(dialog, text="komputer", font=("Helvetica", 14), command=lambda: set_player(False))
+    button_komputer.pack(side="right", padx=20, pady=20)
+
+    dialog.transient(root)
+    dialog.grab_set()
+    root.wait_window(dialog)
+
+for r in range(3):
+    for c in range(3):
+        buttons[r][c] = tk.Button(root, text="", font=("Helvetica", 20), width=6, height=3,
+                                  command=lambda row=r, col=c: button_click(row, col))
+        buttons[r][c].grid(row=r, column=c)
+
+reset_game()
+
+root.mainloop()
